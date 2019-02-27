@@ -1,1 +1,72 @@
-var launchRemoved=false;var loadingRemoved=false;apiready=function(){api.setStatusBarStyle({style:'light'});api.openFrame({name:'main',url:'https://www.5xe88.com?ap001',bounces:false,rect:{w:'auto',h:'auto'},progress:{type:'page'}});api.setFrameClient({frameName:'main'},function(ret){onBrowserStateChange(ret)});removeLogic();api.addEventListener({name:'keyback'},function(ret,err){api.historyBack({frameName:'main'},function(ret,err){if(!ret.status){api.closeWidget()}})});removeLogic()};function onBrowserStateChange(ret){if(0==ret.state){if(!launchRemoved){launchRemoved=true;removeLaunch()}}if(2==ret.state){if(!loadingRemoved){loadingRemoved=true;document.getElementById('loading').style.display='none'}}}function removeLogic(){setTimeout(function(){if(!launchRemoved){launchRemoved=true;removeLaunch()}},3000)}function removeLaunch(){api.removeLaunchView({animation:{type:"fade",subType:"from_right",duration:300}})}
+   var launchRemoved = false;
+    var loadingRemoved = false;
+    
+	apiready = function(){
+        api.setStatusBarStyle({
+            style: 'light'
+        });
+        api.openFrame({
+            name: 'main',
+            url: 'https://www.5xe88.com?ap001',
+            bounces: false,
+            rect: {
+                w: 'auto',
+                h: 'auto'
+            },
+            progress:{
+                type:'page'
+            }
+        });
+		api.setFrameClient({
+		    frameName:'main'
+		},function(ret){
+		    onBrowserStateChange(ret);
+		});
+		removeLogic();
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err){
+            api.historyBack({
+                frameName:'main'
+            },function(ret,err){
+                if(!ret.status){
+                    api.closeWidget();
+                }
+            });
+        });
+		removeLogic();
+    };
+
+	function onBrowserStateChange(ret){
+    	if(0 == ret.state){//开始加载
+			if(!launchRemoved){
+				launchRemoved = true;
+				removeLaunch();
+			}
+    	}
+    	if(2 == ret.state){
+    		if(!loadingRemoved){
+    			loadingRemoved = true;
+    			document.getElementById('loading').style.display = 'none';
+    		}
+    	}
+    }
+	
+	function removeLogic(){
+		setTimeout(function(){
+			if(!launchRemoved){
+				launchRemoved = true;
+				removeLaunch();
+			}
+		}, 3000);
+	}
+
+	function removeLaunch(){
+		api.removeLaunchView({
+			animation:{
+				type:"fade",
+				subType:"from_right",
+				duration:300
+			}
+		});
+	}
